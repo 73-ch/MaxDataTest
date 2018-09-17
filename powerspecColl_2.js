@@ -45,29 +45,6 @@ function storePowerspec(folder_path) {
 
 		if (file.isopen) {
 			var str;
-			// while(file.position < file.eof){
-			// 	str = file.readline();
-			// 	if (str) {
-			// 		var a = str.split(" ");
-			// 		// outlet(0, a.length);
-
-			// 		if (a.length !== 6) error('file format error; line does not have 6 properties.');
-			// 		Array.prototype.push.apply(array, a);
-
-			// 		// CDM.push(parseFloat(a[1]));
-			// 		// baryon.push(parseFloat(a[2]));
-			// 		// photon.push(parseFloat(a[3]));
-			// 		// neutrino.push(parseFloat(a[4]));
-			// 		// total.push(parseFloat(a[5]));
-
-			// 		CDM.push(a[1]);
-			// 		baryon.push(a[2]);
-			// 		photon.push(a[3]);
-			// 		neutrino.push(a[4]);
-			// 		total.push(a[5]);
-			// 	}
-			// }
-
 			while(file.position < file.eof){
 				str = file.readline();
 				if (str) {
@@ -77,20 +54,19 @@ function storePowerspec(folder_path) {
 					if (a.length !== 6) error('file format error; line does not have 6 properties.');
 					Array.prototype.push.apply(array, a);
 
-					CDM.push(parseFloat(a[1]));
-					baryon.push(parseFloat(a[2]));
-					photon.push(parseFloat(a[3]));
-					neutrino.push(parseFloat(a[4]));
-					total.push(parseFloat(a[5]));
+					// CDM.push(parseFloat(a[1]));
+					// baryon.push(parseFloat(a[2]));
+					// photon.push(parseFloat(a[3]));
+					// neutrino.push(parseFloat(a[4]));
+					// total.push(parseFloat(a[5]));
 
-					// CDM.push(a[1]);
-					// baryon.push(a[2]);
-					// photon.push(a[3]);
-					// neutrino.push(a[4]);
-					// total.push(a[5]);
+					CDM.push(a[1]);
+					baryon.push(a[2]);
+					photon.push(a[3]);
+					neutrino.push(a[4]);
+					total.push(a[5]);
 				}
 			}
-
 		} else {
 			error('could not find the file "' + file_path + '"\n');
 		}
@@ -106,16 +82,10 @@ function storePowerspec(folder_path) {
 
 function clear() {
 	array = [];
-	CDM = [];
-	baryon = [];
-	photon = [];
-	neutrino = [];
-	total = [];
 }
 
-// file
 function getLine(line_num) {
-	if (line_num <= size * 300) {
+	if (line_num <= size) {
 		// outが５の場合
 		// outlet(0, CDM[line_num]);
 		// outlet(1, baryon[line_num]);

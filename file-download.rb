@@ -34,8 +34,23 @@ def download_files
 
 end
 
+def reformat_files
+	file_names = get_filenames
+
+	puts file_names
+
+	file_names.each do |name|
+		url = "data/powerspec/#{name}"
+
+		text = fetch_url(url)
+
+		rows = text.scan(/\n/)
+	end
+
+end
+
 def main
-	download_files()
+	reformat_files()
 end
 
 main()
