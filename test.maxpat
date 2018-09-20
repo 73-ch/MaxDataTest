@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 48.0, 87.0, 1366.0, 1041.0 ],
+		"rect" : [ 48.0, 87.0, 1259.0, 1041.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,12 +38,25 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-41",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 581.0, 479.0, 150.0, 32.0 ],
+					"style" : "",
+					"text" : "特定の物質の特定の時間の特定の波数を取得する"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-179",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 659.5, 565.5, 24.0, 22.0 ],
+					"patching_rect" : [ 621.0, 565.5, 24.0, 22.0 ],
 					"style" : "",
 					"text" : "t b"
 				}
@@ -57,7 +70,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 720.5, 542.5, 50.0, 22.0 ],
+					"patching_rect" : [ 681.0, 551.0, 50.0, 22.0 ],
 					"style" : ""
 				}
 
@@ -166,7 +179,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 586.0, 677.5, 106.0, 22.0 ],
 					"style" : "",
-					"text" : "576.25824"
+					"text" : "4.03439"
 				}
 
 			}
@@ -177,7 +190,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 606.0, 612.5, 66.0, 22.0 ],
+					"patching_rect" : [ 581.0, 620.5, 66.0, 22.0 ],
 					"style" : "",
 					"text" : "zl 300 mth"
 				}
@@ -190,7 +203,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 720.5, 509.0, 81.0, 22.0 ],
+					"patching_rect" : [ 681.0, 518.0, 81.0, 22.0 ],
 					"style" : "",
 					"text" : "r wave_index"
 				}
@@ -203,7 +216,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 606.0, 509.0, 45.0, 22.0 ],
+					"patching_rect" : [ 581.0, 518.0, 45.0, 22.0 ],
 					"style" : "",
 					"text" : "r CDM"
 				}
@@ -1137,7 +1150,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 880.0, 191.0, 50.0, 22.0 ],
+					"patching_rect" : [ 756.0, 213.0, 50.0, 22.0 ],
 					"style" : ""
 				}
 
@@ -1505,13 +1518,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-127", 0 ],
-					"source" : [ "obj-132", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-126", 0 ],
 					"source" : [ "obj-133", 0 ]
 				}
@@ -1810,57 +1816,71 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-121", 0 ],
-					"source" : [ "obj-95", 0 ]
+					"destination" : [ "obj-86", 0 ],
+					"source" : [ "obj-97", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-86", 0 ],
-					"source" : [ "obj-97", 0 ]
+					"destination" : [ "", -1 ],
+					"source" : [ "obj-157", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-127", 0 ],
+					"source" : [ "obj-132", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-121", 0 ],
+					"source" : [ "obj-95", 0 ]
 				}
 
 			}
  ],
 		"dependency_cache" : [ 			{
 				"name" : "powerspecColl_1.js",
-				"bootpath" : "~/Documents/Max/松本さん東大テスト",
+				"bootpath" : "~/Documents/Max/todai-matsumotosan",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "timeToFilenum.js",
-				"bootpath" : "~/Documents/Max/松本さん東大テスト",
+				"bootpath" : "~/Documents/Max/todai-matsumotosan",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "wavenumToIndex.js",
-				"bootpath" : "~/Documents/Max/松本さん東大テスト",
+				"bootpath" : "~/Documents/Max/todai-matsumotosan",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "test.js",
-				"bootpath" : "~/Documents/Max/松本さん東大テスト",
+				"bootpath" : "~/Documents/Max/todai-matsumotosan",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "consentrateData.js",
-				"bootpath" : "~/Documents/Max/松本さん東大テスト",
+				"bootpath" : "~/Documents/Max/todai-matsumotosan",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "visualize.maxpat",
-				"bootpath" : "~/Documents/Max/松本さん東大テスト",
+				"bootpath" : "~/Documents/Max/todai-matsumotosan",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
