@@ -1,5 +1,5 @@
 inlets = 2;
-outlets = 2;
+outlets = 1;
 
 var redshifts = [];
 var cosmic_ages = [];
@@ -45,20 +45,17 @@ var msg_float = function(r) {
 function outFileNum(array, val, inv) {
 	if (array[0]*inv > val *inv) {
 		outlet(0, getPath(0));
-		outlet(1, getPath(0));
 		return;
 	}
 
 	for (var i = 1; i < array.length; i++) {
 		if (array[i]*inv > val*inv) {
-			outlet(0, getPath(i-1));
-			outlet(1, getPath(i));
+			outlet(0, getPath(i));
 			return;
 		}
 	}
 
 	outlet(0, getPath(array.length-1));
-	outlet(1, getPath(array.length-1));
 }
 
 function getPath(i) {
