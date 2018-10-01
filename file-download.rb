@@ -96,7 +96,7 @@ def sort_out_file(file_names)
 	return ret_val
 end
 
-def recreate_file
+def reformat_files
 	file_names = get_filenames
 
 	puts file_names
@@ -108,29 +108,21 @@ def recreate_file
 		# puts name
 		# puts content
 		# puts "____________________________________________"
-		# save_file(url, content)
-	end
-
-end
-
-def reformat_files
-	file_names = get_filenames
-
-	puts file_names
-
-	file_names.each do |name|
-		url = "data/powerspec/#{name}"
-
-		text = fetch_url(url)
-
-		rows = text.scan(/\n/)
+		save_file(url, content)
 	end
 
 end
 
 def main
-	# reformat_files()
-	recreate_file()
+	file_names = ["CDM", "baryon", "photon", "neutrino", "total"]
+
+	file_names.each do |name|
+		url = "http://www-utap.phys.s.u-tokyo.ac.jp/~nishimichi/misc/cosmic_sound/powerspec/#{name}.dat"
+
+		text = fetch_url(url)
+
+		save_file("data/powerspecs/#{name}.dat", text)
+	end
 end
 
 main()

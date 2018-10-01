@@ -1,0 +1,11 @@
+{
+  "name": "cosmic-sound",
+  "version": "1.0.0",
+  "main": "test2.js",
+  "repository": "git@github.com:nami634/MaxDataTest.git",
+  "author": "nami634 <cigarbox.nami@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
+}
