@@ -2,7 +2,7 @@
 	"name" : "cosmic-sound",
 	"version" : 1,
 	"creationdate" : 3621261256,
-	"modificationdate" : 3621436396,
+	"modificationdate" : 3621457826,
 	"viewrect" : [ 25.0, 47.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 0,
@@ -25,7 +25,12 @@
 		"code" : 		{
 			"powerspec1.js" : 			{
 				"kind" : "javascript",
-				"local" : 1
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Documents/Max 8/Projects/cosmic-sound/nodejs",
+					"projectrelativepath" : "./nodejs"
+				}
+
 			}
 
 		}

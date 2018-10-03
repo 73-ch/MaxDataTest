@@ -1,4 +1,5 @@
 const Spline = require('cubic-spline');
+const FS = require('fs');
 
 exports.createArrayFromDatFile = (text_data) => {
 	const return_array = [];
@@ -7,7 +8,10 @@ exports.createArrayFromDatFile = (text_data) => {
 	let tmp_row = [];
 	for (let r of rows) {
 		tmp_row = r.split(" ");
-		return_array.push(parseFloat(tmp_row));
+
+		parseFloatForEach(tmp_row);
+
+		return_array.push(tmp_row);
 	}
 
 	return return_array;
@@ -23,10 +27,17 @@ exports.getIndex = (sample, array) => {
 	return i;
 }
 
-exportt.fetchFile = async (path) => {
-	FS.readFile(path, 'utf8', (err, data) => {
-		if (data) {
-			return data;
-		}
+exports.fetchFile = (path) => {
+	return new Promise(resolve => {
+		FS.readFile(path, 'utf8', (err, data) => {
+			if (err) {
+				console.error(err);
+			}
+			resolve(data);
+		});
 	});
+}
+
+const parseFloatForEach = (arr) => {
+	for (let i =0, len = arr.length; i < len; ++i) arr[i] = parseFloat(arr[i]);
 }
