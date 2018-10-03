@@ -2,7 +2,7 @@
 	"name" : "cosmic-sound",
 	"version" : 1,
 	"creationdate" : 3621261256,
-	"modificationdate" : 3621262382,
+	"modificationdate" : 3621436396,
 	"viewrect" : [ 25.0, 47.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 0,
@@ -23,6 +23,10 @@
 		}
 ,
 		"code" : 		{
+			"powerspec1.js" : 			{
+				"kind" : "javascript",
+				"local" : 1
+			}
 
 		}
 
@@ -33,13 +37,6 @@
 	}
 ,
 	"searchpath" : 	{
-		"0" : 		{
-			"bootpath" : "~/Documents/Max 8/Projects/cosmic-sound/other/data/3d_data",
-			"projectrelativepath" : "./other/data/3d_data",
-			"label" : "3d-data",
-			"recursive" : 1,
-			"enabled" : 1
-		}
 
 	}
 ,
