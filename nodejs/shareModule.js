@@ -21,9 +21,18 @@ exports.createArrayFromDatFile = (text_data) => {
 
 exports.getIndex = (sample, array, rev) => {
 	let i = 0;
-
-	while (array[i] * rev < sample * rev) {
-		i++;
+	// console.log(sample);
+	// console.log(array);
+	// console.log(rev);
+	// console.log(array[280]);
+	if (rev) {
+		while (array[i] > sample) {
+			i++;
+		}
+	} else {
+		while (array[i] < sample) {
+			i++;
+		}
 	}
 
 	return i;

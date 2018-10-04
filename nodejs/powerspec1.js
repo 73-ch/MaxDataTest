@@ -23,7 +23,7 @@ const file_paths = {
 	}
 }
 
-let time_mode = 2;
+let time_mode = 0;
 
 const time_modes = {
 	"index": 0,
@@ -41,7 +41,7 @@ Max.addHandler("init", () => {
 Max.addHandler("loadFiles", () => {
 	if (powerspec_name) loadPowerspecFile();
 	loadTimeFile();
-	loadWaveFile();
+	// loadWaveFile();
 });
 
 Max.addHandler("time", (input) => {
@@ -53,30 +53,16 @@ Max.addHandler("time", (input) => {
 		time = input;
 	}
 
-	const rev = time_mode === 1 ? -1.0: 1.0;
+	const rev = time_mode === 1 ? true: false;
 
 	const index = myModule.getIndex(time, times, rev);
 
 	const ret_array = getPowerspec(time, index);
 
+	// console.log(ret_array.length);
+
 	Max.outlet(ret_array);
 });
-
-const getPowerspec = (time, index) => {
-	const length = times.length;
-	const tmp_times = times.slice(Math.max(index-2,0),Math.min(index+2, length));
-	return powerspecs.map((a, i) => Spline(time, tmp_times, powerspecs[i].slice(Math.max(index-2,0),Math.min(index+2, length))));
-	// return powerspecs.map((a, i) => powerspecs[i][index]);
-}
-
-
-Max.addHandler("redshift", (redshift) => {
-
-});
-
-// Max.addHandler([MESSAGE_TYPES.NUMBER], (time) => {
-// 	Max.output(Spline(time,times,powerspecs[0]))
-// });
 
 Max.addHandler("setMaterial", (_powerspec_name) => {
 	if (file_paths["powerspecs"][_powerspec_name]) {
@@ -85,17 +71,34 @@ Max.addHandler("setMaterial", (_powerspec_name) => {
 
 		console.log(powerspec_name);
 		loadPowerspecFile();
-
-		// console.log(powerspecs[0].length);
 	}
 });
 
-const outputData = () => {
+Max.addHandler("setTimeMode", (_mode_name) => {
+	if (_mode_name in time_modes) {
+		time_mode = time_modes[_mode_name];
 
+		loadTimeFile().then(()=>{
+			console.log(`${_mode_name} was loaded.`);
+		});
+	} else {
+		console.error("time mode out of range");
+	}
+});
+
+const getPowerspec = (time, index) => {
+	const length = times.length;
+	let tmp_times = times.slice(Math.max(index-2,0),Math.min(index+2, length));
+
+	if (time_mode === time_modes["redshift"]) {
+		tmp_times = tmp_times.reverse();
+		return powerspecs.map((a, i) => Spline(time, tmp_times, powerspecs[i].slice(Math.max(index-2,0),Math.min(index+2, length)).reverse()));
+	} else {
+		return powerspecs.map((a, i) => Spline(time, tmp_times, powerspecs[i].slice(Math.max(index-2,0),Math.min(index+2, length))));
+	}
 }
 
 const loadPowerspecFile = async () => {
-	// console.log(file_paths["powerspecs"][powerspec_name]);
 	const powerspec_data_text = await myModule.fetchFile(file_paths["powerspecs"][powerspec_name]);
 
 	powerspecs = myModule.createArrayFromDatFile(powerspec_data_text);
@@ -118,15 +121,13 @@ const loadTimeFile = async () => {
 const setTimeData = (times_array) => {
 	// row:times column:[index,redshift,cosmictime] =>  row:[index,redshift,cosmictime], column :times
 	const time_data = myModule.transpose2DArray(times_array);
-
-	if (time_data[time_mode] === "index") {
+	if (time_mode === time_modes["index"]) {
 		return time_data[time_mode];
 	} else {
 		return time_data[time_mode].map(a => a === 0 ? 0 : Math.log(a));
 	}
 }
 
-
-const loadWaveFile = async () => {
-	return true;
-}
+// const loadWaveFile = async () => {
+// 	return true;
+// }
