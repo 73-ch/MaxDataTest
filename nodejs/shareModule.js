@@ -19,10 +19,10 @@ exports.createArrayFromDatFile = (text_data) => {
 	return return_array;
 };
 
-exports.getIndex = (sample, array) => {
+exports.getIndex = (sample, array, rev) => {
 	let i = 0;
 
-	while (array[i] < sample) {
+	while (array[i] * rev < sample * rev) {
 		i++;
 	}
 

@@ -23,7 +23,7 @@ const file_paths = {
 	}
 }
 
-let time_mode = 0;
+let time_mode = 2;
 
 const time_modes = {
 	"index": 0,
@@ -44,20 +44,31 @@ Max.addHandler("loadFiles", () => {
 	loadWaveFile();
 });
 
-Max.addHandler("time", (time) => {
-	// console.log(powerspecs[0].length);
-	// console.log(times.length);
-// console.log(Spline(time,times,powerspecs[0]));
+Max.addHandler("time", (input) => {
+	let time;
 
-	// Max.outlet(Spline(time,times,powerspecs[0]))
-	let index = myModule.getIndex(time, times);
-	// console.log(index);
+	if (time_mode === time_modes["redshift"] || time_mode === time_modes["cosmictime"]) {
+		time = input === 0 ? 0.00000 : Math.log(input);
+	} else {
+		time = input;
+	}
 
+	const rev = time_mode === 1 ? -1.0: 1.0;
 
-	let ret_array = powerspecs.map((a, i) => Spline(time, times.slice(index-2,index+2), powerspecs[i].slice(index-2,index+2)))
+	const index = myModule.getIndex(time, times, rev);
+
+	const ret_array = getPowerspec(time, index);
 
 	Max.outlet(ret_array);
 });
+
+const getPowerspec = (time, index) => {
+	const length = times.length;
+	const tmp_times = times.slice(Math.max(index-2,0),Math.min(index+2, length));
+	return powerspecs.map((a, i) => Spline(time, tmp_times, powerspecs[i].slice(Math.max(index-2,0),Math.min(index+2, length))));
+	// return powerspecs.map((a, i) => powerspecs[i][index]);
+}
+
 
 Max.addHandler("redshift", (redshift) => {
 
@@ -92,26 +103,29 @@ const loadPowerspecFile = async () => {
 	// row:time, column:wave => row:wave, column:time
 	powerspecs = myModule.transpose2DArray(powerspecs);
 
-	console.log(powerspecs.length);
-	console.log(powerspecs[0].length);
-
 	return true;
 };
 
 const loadTimeFile = async () => {
 	const time_data_text = await myModule.fetchFile(file_paths["times"]);
 	let time_data = myModule.createArrayFromDatFile(time_data_text);
-	// console.log(time_data.length);
-	// console.log(time_data[0].length);
 
-	time_data = myModule.transpose2DArray(time_data);
+	times = setTimeData(time_data);
 
-	times = time_data[time_mode];
-
-	console.log(times.length);
-	// console.log(time_data_text);
 	return true;
 }
+
+const setTimeData = (times_array) => {
+	// row:times column:[index,redshift,cosmictime] =>  row:[index,redshift,cosmictime], column :times
+	const time_data = myModule.transpose2DArray(times_array);
+
+	if (time_data[time_mode] === "index") {
+		return time_data[time_mode];
+	} else {
+		return time_data[time_mode].map(a => a === 0 ? 0 : Math.log(a));
+	}
+}
+
 
 const loadWaveFile = async () => {
 	return true;
