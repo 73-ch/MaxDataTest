@@ -9,13 +9,15 @@ exports.createArrayFromDatFile = (text_data) => {
 	for (let r of rows) {
 		tmp_row = r.split(" ");
 
-		parseFloatForEach(tmp_row);
+
+		tmp_row = tmp_row.map(a => parseFloat(a));
+		// parseFloatForEach(tmp_row);
 
 		return_array.push(tmp_row);
 	}
 
 	return return_array;
-}
+};
 
 exports.getIndex = (sample, array) => {
 	let i = 0;
@@ -25,7 +27,7 @@ exports.getIndex = (sample, array) => {
 	}
 
 	return i;
-}
+};
 
 exports.fetchFile = (path) => {
 	return new Promise(resolve => {
@@ -36,8 +38,8 @@ exports.fetchFile = (path) => {
 			resolve(data);
 		});
 	});
-}
+};
 
-const parseFloatForEach = (arr) => {
-	for (let i =0, len = arr.length; i < len; ++i) arr[i] = parseFloat(arr[i]);
-}
+exports.transpose2DArray = (arr) => {
+	return arr[0].map((col, i) => arr.map(row => row[i]));
+};
