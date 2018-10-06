@@ -6,6 +6,7 @@
   "author": "nami634 <cigarbox.nami@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "fs": "^0.0.1-security"
+    "cubic-spline": "^1.0.4",
+    "fs": "0.0.1-security"
   }
 }
