@@ -92,9 +92,9 @@ const getPowerspec = (time, index) => {
 
 	if (time_mode === time_modes["redshift"]) {
 		tmp_times = tmp_times.reverse();
-		return powerspecs.map((a, i) => Spline(time, tmp_times, powerspecs[i].slice(Math.max(index-2,0),Math.min(index+2, length)).reverse()));
+		return powerspecs.map((a, i) => Math.max(0,Spline(time, tmp_times, powerspecs[i].slice(Math.max(index-2,0),Math.min(index+2, length)).reverse())));
 	} else {
-		return powerspecs.map((a, i) => Spline(time, tmp_times, powerspecs[i].slice(Math.max(index-2,0),Math.min(index+2, length))));
+		return powerspecs.map((a, i) => Math.max(0,Spline(time, tmp_times, powerspecs[i].slice(Math.max(index-2,0),Math.min(index+2, length)))));
 	}
 }
 
